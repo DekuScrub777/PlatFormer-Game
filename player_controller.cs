@@ -37,7 +37,6 @@ public class PlayerMovement : MonoBehaviour
     {
 
         float dirX = Input.GetAxisRaw("Horizontal");
-        float dirY = Input.GetAxisRaw("Vertical");
 
         if (Input.GetKey("d"))
         {
@@ -61,7 +60,7 @@ public class PlayerMovement : MonoBehaviour
             
         }
 
-        Debug.Log(dirY);
+        Debug.Log(rb.velocity.y);
      
        if (dirX > 0f) 
        {
@@ -77,5 +76,11 @@ public class PlayerMovement : MonoBehaviour
        {
             anim.SetBool("Running", false);
        }
+
+       if (rb.velocity.y <= -17)
+       {
+            transform.localPosition = new Vector3(-2, 2, 0);
+            rb.velocity = new Vector2(rb.velocity.x, 1f);
+        }
     }
 }
